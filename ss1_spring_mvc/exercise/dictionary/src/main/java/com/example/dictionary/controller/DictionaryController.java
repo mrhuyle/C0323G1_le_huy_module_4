@@ -22,6 +22,7 @@ public class DictionaryController {
     public String find(@RequestParam String english, Model model) {
         String vietnamese = dictionaryService.find(english);
         model.addAttribute("vietnamese", vietnamese);
+        model.addAttribute("english",english);
         return "show";
     }
 
