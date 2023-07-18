@@ -19,10 +19,10 @@ public class DictionaryController {
     }
 
     @PostMapping("/find")
-    public String find(@RequestParam String english, Model model) {
-        String vietnamese = dictionaryService.find(english);
-        model.addAttribute("vietnamese", vietnamese);
-        model.addAttribute("english",english);
+    public String find(@RequestParam String word, @RequestParam String type, Model model) {
+        String translateWord = dictionaryService.find(word,type);
+        model.addAttribute("translateWord", translateWord);
+        model.addAttribute("word", word);
         return "show";
     }
 

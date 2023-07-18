@@ -9,7 +9,7 @@ public class DictionaryService implements IDictionaryService {
     @Autowired
     private IDictionaryRepository dictionaryRepository;
     @Override
-    public String find(String english) {
-        return dictionaryRepository.find(english);
+    public String find(String word, String type) {
+        return dictionaryRepository.find(word, type);
     }
 }

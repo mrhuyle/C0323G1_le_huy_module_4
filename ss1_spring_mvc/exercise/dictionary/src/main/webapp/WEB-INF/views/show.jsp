@@ -13,10 +13,12 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         .frame {
-            width: 70%;
+            width: 50%;
             position: absolute;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
+            border-radius: 10px;
         }
         .frame-head {
             position: relative;
@@ -35,12 +37,12 @@
     </div>
     <div class="frame-form">
         <form action="/find" method="post">
-            <table class="table table-dark d-inline-block mx-5">
+            <table class="table table-dark d-inline-block mx-5 rounded">
                 <input type="hidden" name="type" id="type" value="en">
                 <tr>
                     <th id="select1">English</th>
                     <td>
-                        <input type="text" name="english" id="input1" value="${english}">
+                        <input type="text" name="word" id="input1" value="${word}">
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +50,7 @@
                         Vietnamese
                     </th>
                     <td id="input2">
-                        ${vietnamese}
+                        ${translateWord}
                     </td>
                 </tr>
             </table>
@@ -63,19 +65,18 @@
 <script>
     function change() {
         let x = document.getElementById("select1").innerText;
-        console.log(x);
         if (x === "English") {
             document.getElementById("select1").innerText = "Vietnamese";
             document.getElementById("select2").innerText = "English";
             document.getElementById("input1").value = "";
             document.getElementById("input2").innerText = "";
-            document.getElementById("type").value = "en";
+            document.getElementById("type").value = "vi";
         } else {
             document.getElementById("select1").innerText = "English";
             document.getElementById("select2").innerText = "Vietnamese";
             document.getElementById("input1").value = "";
             document.getElementById("input2").innerText = "";
-            document.getElementById("type").value = "vi";
+            document.getElementById("type").value = "en";
         }
     }
 </script>
