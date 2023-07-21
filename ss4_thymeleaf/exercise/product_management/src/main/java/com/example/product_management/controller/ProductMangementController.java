@@ -15,10 +15,15 @@ public class ProductMangementController {
     private IProductManagementService productManagementService;
 
     @GetMapping("/")
-    public ModelAndView show() {
+    public ModelAndView displayAllProducts() {
         List<Product> productList = productManagementService.displayAll();
         ModelAndView modelAndView = new ModelAndView("home");
         modelAndView.addObject("productList", productList);
         return modelAndView;
+    }
+
+    @GetMapping("/show-create-form")
+    public String showCreateForm() {
+        return "create_form";
     }
 }
