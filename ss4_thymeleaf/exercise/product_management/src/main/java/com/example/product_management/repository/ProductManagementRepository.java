@@ -23,4 +23,9 @@ public class ProductManagementRepository implements IProductManagementRepsitory 
     public List<Product> getAllProducts() {
         return productList;
     }
+
+    @Override
+    public void save(Product product) {
+        productList.add(product);
+    }
 }

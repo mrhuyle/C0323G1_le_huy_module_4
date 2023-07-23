@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IProductManagementService {
     List<Product> displayAll();
+    void create(Product product);
 }

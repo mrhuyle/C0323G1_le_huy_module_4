@@ -16,4 +16,9 @@ public class ProductManagementService implements IProductManagementService {
     public List<Product> displayAll() {
         return productManagementRepsitory.getAllProducts();
     }
+
+    @Override
+    public void create(Product product) {
+        productManagementRepsitory.save(product);
+    }
 }
