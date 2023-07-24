@@ -10,4 +10,5 @@ public interface IProductManagementRepsitory {
     Product getProductById(int id);
     void update(Product product);
     void delete(int id);
+    List<Product> searchByName(String name);
 }

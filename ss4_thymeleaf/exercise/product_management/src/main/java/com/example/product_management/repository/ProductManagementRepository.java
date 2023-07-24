@@ -53,4 +53,15 @@ public class ProductManagementRepository implements IProductManagementRepsitory 
         Product product = getProductById(id);
         productList.remove(product);
     }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        List<Product> products = new ArrayList<>();
+        for (Product product: productList) {
+            if (product.getName().toLowerCase().contains(name)) {
+                products.add(product);
+            }
+        }
+        return products;
+    }
 }

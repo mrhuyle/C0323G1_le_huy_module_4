@@ -36,4 +36,9 @@ public class ProductManagementService implements IProductManagementService {
     public void delete(int id) {
         productManagementRepsitory.delete(id);
     }
+
+    @Override
+    public List<Product> searchByName(String name) {
+        return productManagementRepsitory.searchByName(name);
+    }
 }
