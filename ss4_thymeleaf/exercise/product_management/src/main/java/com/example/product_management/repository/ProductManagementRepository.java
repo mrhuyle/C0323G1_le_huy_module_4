@@ -28,4 +28,29 @@ public class ProductManagementRepository implements IProductManagementRepsitory 
     public void save(Product product) {
         productList.add(product);
     }
+
+    @Override
+    public Product getProductById(int id) {
+        for (Product product: productList) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void update(Product product) {
+        Product oldProduct = getProductById(product.getId());
+        oldProduct.setName(product.getName());
+        oldProduct.setDescription(product.getDescription());
+        oldProduct.setManufacturer(product.getManufacturer());
+        oldProduct.setPrice(product.getPrice());
+    }
+
+    @Override
+    public void delete(int id) {
+        Product product = getProductById(id);
+        productList.remove(product);
+    }
 }

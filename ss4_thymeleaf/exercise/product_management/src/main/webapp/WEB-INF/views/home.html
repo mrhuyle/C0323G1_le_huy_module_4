@@ -130,10 +130,12 @@
         <div class="create-button">
             <button type="button" onclick="toCreateForm()">Create New Product</button>
         </div>
-
         <div class="search-button">
             <button>Search</button>
         </div>
+    </div>
+    <div class="messaage" th:if="${message}">
+        <h3 th:text="${message}" style="color: red; text-align: center"></h3>
     </div>
     <div class="body-table">
         <table>
@@ -154,13 +156,16 @@
                 <td th:text="${product.getDescription()}"></td>
                 <td th:text="${product.getManufacturer()}"></td>
                 <td class="function">
-                    <button class="btn-function">Detail</button>
+                    <button class="btn-function" th:onclick="'toDetail(\'' + ${product.id} + '\');'">Detail</button>
+<!--                    <button class="btn-function" th:attr="onclick=|toDetail('${product.id}')|">Detail</button>-->
                 </td>
                 <td class="function">
-                    <button class="btn-function">Update</button>
+                    <button class="btn-function" th:onclick="'toUpdate(\'' + ${product.id} + '\');'">Update</button>
+<!--                    <button class="btn-function" th:attr="onclick|toUpdate('${product.id}')|">Update</button>-->
                 </td>
                 <td class="function">
-                    <button class="btn-function">Delete</button>
+                    <button class="btn-function" th:onclick="'toDelete(\'' + ${product.id} + '\',\'' + ${product.name} + '\');'">Delete</button>
+<!--                    <button class="btn-function" th:attr="onclick|toDelete('${product.id}')|">Delete</button>-->
                 </td>
             </tr>
         </table>
@@ -170,10 +175,26 @@
     <!--      </div>-->
     <div th:insert="layout :: footer"></div>
 </div>
+<form action="">
+
+</form>
 </body>
 <script>
     function toCreateForm() {
         window.location.href = "/show-create-form";
+    }
+    function toDetail(id) {
+        window.location.href= "/show-detail-form/" + id;
+    }
+    function toUpdate(id) {
+        window.location.href= "/show-update-form/" + id;
+    }
+    function toDelete(id, name) {
+        if (confirm("Do you want to delete product " + name)) {
+            window.location.href= "/delete/" + id;
+        } else {
+            window.location.href= "/";
+        }
     }
 </script>
 </html>

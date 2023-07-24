@@ -21,4 +21,19 @@ public class ProductManagementService implements IProductManagementService {
     public void create(Product product) {
         productManagementRepsitory.save(product);
     }
+
+    @Override
+    public Product getProductById(int id) {
+        return productManagementRepsitory.getProductById(id);
+    }
+
+    @Override
+    public void update(Product product) {
+        productManagementRepsitory.update(product);
+    }
+
+    @Override
+    public void delete(int id) {
+        productManagementRepsitory.delete(id);
+    }
 }

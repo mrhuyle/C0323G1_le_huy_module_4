@@ -7,8 +7,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -33,11 +35,36 @@ public class ProductMangementController {
     }
 
     @PostMapping("/create")
-    public String create(@ModelAttribute("product") Product product, Model model) {
+    public String create(@ModelAttribute("product") Product product, RedirectAttributes redirectAttributes) {
         productManagementService.create(product);
         List<Product> productList = productManagementService.displayAll();
-        model.addAttribute("productList", productList);
-        return "home";
+        redirectAttributes.addFlashAttribute("message","Successfully created");
+        return "redirect:/";
+    }
 
+    @GetMapping("/show-detail-form/{id}")
+    public String showDetail(@PathVariable("id") int id, Model model) {
+        Product product = productManagementService.getProductById(id);
+        model.addAttribute("product", product);
+        return "detail";
+    }
+
+    @GetMapping("/show-update-form/{id}")
+    public String showUpdateForm(@PathVariable("id") int id, Model model) {
+        Product product = productManagementService.getProductById(id);
+        model.addAttribute("product", product);
+        return "update";
+    }
+    @PostMapping("/update")
+    public String update(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
+        productManagementService.update(product);
+        redirectAttributes.addFlashAttribute("message", "Successfully updated");
+        return "redirect:/";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
+        productManagementService.delete(id);
+        redirectAttributes.addFlashAttribute("message", "Successfully deleted");
+        return "redirect:/";
     }
 }

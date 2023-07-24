@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Create Form</title>
+  <link rel="stylesheet" href="/static/css/home.css">
+  <style>
+    .body-form {
+      position: relative;
+      margin-top: 50px;
+      width: 70%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .body-form td input{
+      width: 80%;
+      font-size: 20px;
+    }
+    .body-form th {
+      width: 30%;
+      text-align: start;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div th:insert="layout :: header"></div>
+  <div class="buttons">
+    <div class="create-button">
+      <button type="button" onclick="update()">Confirm</button>
+    </div>
+    <div class="cancel-button" onclick="back()">
+      <button>Back</button>
+    </div>
+  </div>
+  <div class="body-form">
+    <form th:action="@{/update}" th:object="${product}" id="form" method="post">
+      <table>
+        <tr>
+          <th>
+            Product Id
+          </th>
+          <td>
+            <input type="number" th:field="*{id}" readonly>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Product Name
+          </th>
+          <td>
+            <input type="text" th:field="*{name}" required>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Product Price
+          </th>
+          <td>
+            <input type="number" th:field="*{price}" required>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Product Description
+          </th>
+          <td>
+            <input type="text" th:field="*{description}" required>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Product Manufacturer
+          </th>
+          <td>
+            <input type="text" th:field="*{manufacturer}" required>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+  </div>
+  <div th:insert="layout :: footer"></div>
+</div>
+</body>
+
+<script>
+  function back() {
+    window.location.href = "/";
+  }
+
+  function update() {
+    document.getElementById("form").submit();
+  }
+</script>
+</html>
