@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductManagementRepsitory {
     List<Product> getAllProducts();
-    void save(Product product);
+    boolean save(Product product);
     Product getProductById(int id);
     void update(Product product);
     void delete(int id);

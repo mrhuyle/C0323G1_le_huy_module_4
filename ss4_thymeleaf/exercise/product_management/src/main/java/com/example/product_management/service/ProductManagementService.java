@@ -18,8 +18,8 @@ public class ProductManagementService implements IProductManagementService {
     }
 
     @Override
-    public void create(Product product) {
-        productManagementRepsitory.save(product);
+    public boolean create(Product product) {
+        return productManagementRepsitory.save(product);
     }
 
     @Override

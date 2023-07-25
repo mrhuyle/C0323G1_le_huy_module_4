@@ -34,7 +34,6 @@ public class ProductMangementController {
     @PostMapping("/create")
     public String create(@ModelAttribute("product") Product product, RedirectAttributes redirectAttributes) {
         productManagementService.create(product);
-        List<Product> productList = productManagementService.displayAll();
         redirectAttributes.addFlashAttribute("message","Successfully created");
         return "redirect:/";
     }

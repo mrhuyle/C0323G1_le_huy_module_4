@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IProductManagementService {
     List<Product> displayAll();
-    void create(Product product);
+    boolean create(Product product);
     Product getProductById(int id);
     void update(Product product);
     void delete(int id);
