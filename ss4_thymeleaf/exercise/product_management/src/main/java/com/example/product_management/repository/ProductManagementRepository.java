@@ -27,48 +27,44 @@ public class ProductManagementRepository implements IProductManagementRepsitory 
     @Transactional
     @Override
     public boolean save(Product product) {
-//        try {
-//            System.out.println(product);
+        try {
+            System.out.println(product);
             entityManager.persist(product);
-//        } catch (Exception e) {
-//            return false;
-//        }
+        } catch (Exception e) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public Product getProductById(int id) {
-        for (Product product : productList) {
-            if (product.getId() == id) {
-                return product;
-            }
-        }
-        return null;
+        Product product = entityManager.find(Product.class, id);
+        return product;
     }
 
+    @Transactional
     @Override
     public void update(Product product) {
-        Product oldProduct = getProductById(product.getId());
+        Product oldProduct = entityManager.find(Product.class, product.getId());
         oldProduct.setName(product.getName());
         oldProduct.setDescription(product.getDescription());
         oldProduct.setManufacturer(product.getManufacturer());
         oldProduct.setPrice(product.getPrice());
+        entityManager.merge(oldProduct);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
-        Product product = getProductById(id);
-        productList.remove(product);
+        Product product = entityManager.find(Product.class, id);
+        entityManager.remove(product);
     }
 
     @Override
     public List<Product> searchByName(String name) {
-        List<Product> products = new ArrayList<>();
-        for (Product product : productList) {
-            if (product.getName().toLowerCase().contains(name)) {
-                products.add(product);
-            }
-        }
+        TypedQuery<Product> query = entityManager.createQuery(" select p from Product p WHERE p.name LIKE :name", Product.class);
+        query.setParameter("name", name);
+        List<Product> products = query.getResultList();
         return products;
     }
 }

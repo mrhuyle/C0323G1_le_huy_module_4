@@ -34,7 +34,7 @@ public class ProductMangementController {
     @PostMapping("/create")
     public String create(@ModelAttribute("product") Product product, RedirectAttributes redirectAttributes) {
         productManagementService.create(product);
-        redirectAttributes.addFlashAttribute("message","Successfully created");
+        redirectAttributes.addFlashAttribute("message", "Successfully created");
         return "redirect:/";
     }
 
@@ -51,21 +51,24 @@ public class ProductMangementController {
         model.addAttribute("product", product);
         return "update";
     }
+
     @PostMapping("/update")
     public String update(@ModelAttribute Product product, RedirectAttributes redirectAttributes) {
         productManagementService.update(product);
         redirectAttributes.addFlashAttribute("message", "Successfully updated");
         return "redirect:/";
     }
+
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable("id") int id, RedirectAttributes redirectAttributes) {
         productManagementService.delete(id);
         redirectAttributes.addFlashAttribute("message", "Successfully deleted");
         return "redirect:/";
     }
+
     @GetMapping("/search")
     public String search(@RequestParam("name") String name, Model model) {
-        List<Product> productList = productManagementService.searchByName(name);
+        List<Product> productList = productManagementService.searchByName('%' + name + '%');
         model.addAttribute("productList", productList);
         model.addAttribute("message", "Result with search string: " + name);
         return "home";
