@@ -7,16 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class ProductManagementRepository implements IProductManagementRepsitory {
     @PersistenceContext
     private EntityManager entityManager;
-
-
-    private static List<Product> productList = new ArrayList<>();
 
     @Override
     public List<Product> getAllProducts() {
