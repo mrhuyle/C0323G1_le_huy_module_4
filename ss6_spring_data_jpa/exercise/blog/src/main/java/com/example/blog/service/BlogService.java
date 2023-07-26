@@ -13,8 +13,6 @@ import java.util.List;
 public class BlogService implements IBlogService {
     @Autowired
     private IBlogRepository blogRepository;
-    @Autowired
-    private ICategoryRepository categoryRepository;
     @Override
     public List<Blog> findAll() {
         return blogRepository.findAll();

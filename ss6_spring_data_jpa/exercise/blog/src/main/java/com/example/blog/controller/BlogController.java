@@ -76,12 +76,9 @@ public class BlogController {
 
     @PostMapping("/edit/{categoryId}")
     public String edit(@ModelAttribute Blog blog, @PathVariable("categoryId") int categoryId ,RedirectAttributes redirectAttributes) {
-        System.out.println(blog.getTitle());
-        System.out.println(categoryId);
         Category category = categoryService.findById(categoryId);
         blog.setCategory(category);
         blogService.edit(blog);
-        System.out.println(blog.getCategory().getId());
         redirectAttributes.addFlashAttribute("msg", "Edited Successfully");
         return "redirect:/";
     }

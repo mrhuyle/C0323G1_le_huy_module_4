@@ -23,8 +23,13 @@
       <!-- Heading -->
       <div class="blog-heading">
         <h3>Dragon Ball Z: Stories</h3>
+      </div>
+      <div class="blog-sub-heading">
         <h4>By <span th:text="${author.name}"></span></h4>
         <a th:href="@{/show-create-form}">Tell something...</a>
+        <form class="search-input">
+          <input class="search-input" type="search" placeholder="Search...">
+        </form>
       </div>
 
       <!-- Container -->
