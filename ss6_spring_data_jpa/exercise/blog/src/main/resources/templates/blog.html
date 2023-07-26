@@ -1,61 +1,63 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>My Blog</title>
 
     <!-- Style css -------------------------->
-    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/style.css"/>
 
     <!-- Poppins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
     <link
-      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-      rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
     />
-  </head>
-  <body>
-  <div class="msg" th:if="${msg}" th:text="${msg}" style="display: none" id="msg"></div>
-  <!-- Blog Section -->
-    <section id="blog">
-      <!-- Heading -->
-      <div class="blog-heading">
+</head>
+<body>
+<div class="msg" th:if="${msg}" th:text="${msg}" style="display: none" id="msg"></div>
+<!-- Blog Section -->
+<section id="blog">
+    <!-- Heading -->
+    <div class="blog-heading">
         <h3>Dragon Ball Z: Stories</h3>
-      </div>
-      <div class="blog-sub-heading">
+    </div>
+    <div class="blog-sub-heading">
         <h4>By <span th:text="${author.name}"></span></h4>
         <a th:href="@{/show-create-form}">Tell something...</a>
-        <form class="search-input">
-          <input class="search-input" type="search" placeholder="Search...">
-        </form>
-      </div>
-
-      <!-- Container -->
-      <div class="blog-container">
+        <div class="search-input">
+            <form id="searchForm">
+                <input class="search-input" type="text" placeholder="Search Title..." id="searchInput">
+            </form>
+            <button type="button" onclick="search()">Search</button>
+        </div>
+    </div>
+    <!-- Container -->
+    <div class="blog-container">
         <!-- Box1 -->
         <div th:each="blog : ${blogList}" class="blog-box">
-          <!-- Image -->
-          <div class="blog-img">
-            <img
-              th:src="${blog.img}"
-              alt="img1"
-            />
-          </div>
+            <!-- Image -->
+            <div class="blog-img">
+                <img
+                        th:src="${blog.img}"
+                        alt="img1"
+                />
+            </div>
 
-          <!-- Text -->
-          <div class="blog-text">
-            <span th:text="${blog.date}"></span>
-            <a th:text="${blog.title}" href="#" class="blog-title">Title</a>
-            <p th:text="${blog.content}" class="content">
-            </p>
-            <a th:href="@{/detail/{id}(id=${blog.id})}">Read More</a>
-          </div>
+            <!-- Text -->
+            <div class="blog-text">
+                <span th:text="${blog.date}"></span>
+                <a th:text="${blog.title}" href="#" class="blog-title">Title</a>
+                <p th:text="${blog.content}" class="content">
+                </p>
+                <a th:href="@{/detail/{id}(id=${blog.id})}">Read More</a>
+            </div>
         </div>
-      </div>
-    </section>
-  </body>
-  <script src="/css/blog.js">
-  </script>
+    </div>
+</section>
+</body>
+<script src="/css/blog.js">
+</script>
 </html>

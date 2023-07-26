@@ -26,9 +26,16 @@ public class BlogController {
     private ICategoryService categoryService;
 
     @GetMapping("/")
-    public String showHomePage(Model model) {
-        model.addAttribute("blogList", blogService.findAll());
-        model.addAttribute("author", authorService.findById(1));
+    public String showHomePage(@RequestParam(required = false) String search, Model model) {
+        System.out.println(search);
+        if (search != null && !search.trim().isEmpty()) {
+            List<Blog> searchResults = blogService.searchByTitle(search);
+            model.addAttribute("blogList", searchResults);
+            model.addAttribute("author", authorService.findById(1));
+        } else {
+            model.addAttribute("blogList", blogService.findAll());
+            model.addAttribute("author", authorService.findById(1));
+        }
         return "blog";
     }
 

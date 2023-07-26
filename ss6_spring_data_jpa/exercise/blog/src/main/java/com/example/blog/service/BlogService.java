@@ -43,4 +43,9 @@ public class BlogService implements IBlogService {
         currentBlog.setTitle(blog.getTitle());
         blogRepository.save(currentBlog);
     }
+
+    @Override
+    public List<Blog> searchByTitle(String searchQuery) {
+        return blogRepository.findByTitleContainingIgnoreCase(searchQuery);
+    }
 }
