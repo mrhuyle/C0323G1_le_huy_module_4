@@ -56,8 +56,8 @@
               maxime nisi debitis.
             </p>
             <div class="edit">
-              <i class="fa-regular fa-pen-to-square fa-lg"></i>
-              <i class="fa-solid fa-trash-can fa-lg"></i>
+              <i class="fa-regular fa-pen-to-square fa-lg" th:onclick="'toEditForm(\''+ ${blog.id} + '\')'"></i>
+              <i class="fa-solid fa-trash-can fa-lg" th:onclick="'toDelete(\'' + ${blog.id} + '\')'"></i>
             </div>
           </div>
         </div>

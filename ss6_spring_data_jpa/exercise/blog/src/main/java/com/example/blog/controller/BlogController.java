@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.print.DocFlavor;
 import java.util.List;
 
 @Controller
@@ -49,6 +50,7 @@ public class BlogController {
         List<Category> categories = categoryService.findAll();
         model.addAttribute("categories",categories);
         model.addAttribute("blog", new Blog());
+        model.addAttribute("edit", false);
         return "create";
     }
 
@@ -57,5 +59,21 @@ public class BlogController {
         blogService.create(blog);
         redirectAttributes.addFlashAttribute("msg", "Created Successfully");
         return "redirect:/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") int id) {
+        blogService.deleteById(id);
+        return "redirect:/";
+    }
+
+    @GetMapping("/show-edit-form/{id}")
+    public String showEditForm(@PathVariable("id") int id, Model model) {
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categories",categories);
+        Blog blog = blogService.findById(id);
+        model.addAttribute("blog",blog);
+        model.addAttribute("edit", true);
+        return "create";
     }
 }

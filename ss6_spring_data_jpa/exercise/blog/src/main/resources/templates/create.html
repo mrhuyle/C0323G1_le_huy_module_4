@@ -30,7 +30,8 @@
 <section id="blog">
     <!-- Heading -->
     <div class="blog-heading">
-        <h3>Create New Story</h3>
+        <h3 th:if="${!edit}">Create New Story</h3>
+        <h3 th:if="${edit}">Edit The Story</h3>
         <div class="home-icon"><i class="fa-solid fa-house fa-2x" onclick="backToHome()"></i></div>
     </div>
 
@@ -40,7 +41,8 @@
             <!-- Image -->
             <div class="blog-img">
                 <input class="input-img" type="text" placeholder="Input img link" id="input-img">
-                <img src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1806/urfandadashov180601827/150417827-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg"
+                <img th:if="${edit}" th:src="${blog.img}" alt="img1" />
+                <img th:if="${!edit}" src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1806/urfandadashov180601827/150417827-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg"
                      alt="img1"
                 />
             </div>
@@ -48,15 +50,19 @@
             <!-- Text -->
             <div class="blog-text">
                 <div class="date-category">
-                    <input class="input-date-category" type="date" id="input-date">
-                    <select name="category" id="input-category" class="input-date-category" required>
+                    <input class="input-date-category" type="date" id="input-date" th:value="${blog.date}">
+                    <select th:if="${edit}" name="category" id="input-category" class="input-date-category" required>
+                        <option value="">Choose category</option>
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == blog.category.id}"></option>
+                    </select>
+                    <select th:if="${!edit}" name="category" id="input-category" class="input-date-category" required>
                         <option value="">Choose category</option>
                         <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
                     </select>
                 </div>
 
-                <input class="input-title" type="text" placeholder="Input title" id="input-title">
-                <textarea class="input-content" id="input-content"></textarea>
+                <input class="input-title" type="text" placeholder="Input title" id="input-title" th:value="${blog.title}">
+                <textarea class="input-content" id="input-content" th:text="${blog.content}"></textarea>
                 <div class="edit">
                     <button type="submit" onclick="submitForm()">Submit</button>
                 </div>
