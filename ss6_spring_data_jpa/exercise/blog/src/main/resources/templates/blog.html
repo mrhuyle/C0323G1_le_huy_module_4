@@ -44,7 +44,7 @@
             <a th:text="${blog.title}" href="#" class="blog-title">Title</a>
             <p th:text="${blog.content}">
             </p>
-            <a href="#">Read More</a>
+            <a th:href="@{/detail/{id}(id=${blog.id})}">Read More</a>
           </div>
         </div>
       </div>
