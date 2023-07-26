@@ -25,6 +25,14 @@ public class Blog {
     public Blog() {
     }
 
+    public Blog(String title, Date date, String content, String img, Category category) {
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.img = img;
+        this.category = category;
+    }
+
     public Blog(String title, Date date, String content, String img, Category category, Author author) {
         this.title = title;
         this.date = date;

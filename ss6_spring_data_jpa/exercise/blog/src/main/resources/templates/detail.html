@@ -49,7 +49,7 @@
           <div class="blog-text">
             <span th:text="${blog.date}">18 July 2021 / Blog</span>
             <a th:text="${blog.title}" href="#" class="blog-title">Title</a>
-            <p th:text="${blog.content}">
+            <p th:text="${blog.content}" class="content">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum in
               facere soluta nemo aliquam natus quasi tempora, exercitationem
               blanditiis molestias impedit eveniet optio harum rerum sequi, enim
@@ -64,10 +64,5 @@
       </div>
     </section>
   </body>
-
-  <script>
-    function backToHome() {
-      window.location.href = "/";
-    }
-  </script>
+  <script src="/css/detail.js"></script>
 </html>

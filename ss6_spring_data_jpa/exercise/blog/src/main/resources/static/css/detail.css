@@ -17,6 +17,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: poppins;
+  background-color: #9b9b9b;
 }
 
 /* Blog CSS */
@@ -138,5 +139,5 @@ body {
 
 .blog-heading .home-icon:hover {
   cursor: pointer;
-  color: #1111b0;
+  color: #ffffff;
 }

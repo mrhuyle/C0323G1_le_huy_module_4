@@ -17,6 +17,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: poppins;
+  background-color: #9b9b9b;
 }
 
 /* Blog CSS */
@@ -42,10 +43,11 @@ body {
 }
 
 .blog-heading {
+  width: 90vw;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .blog-heading h3 {
@@ -55,6 +57,8 @@ body {
 }
 
 .blog-container {
+  width: 90vw;
+  height: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -63,16 +67,26 @@ body {
 }
 
 .blog-box {
-  width: 350px;
+  display: flex;
+  width: 100%;
+  height: 100%;
   background-color: #ffffff;
   border: 1px solid #ececec;
   margin: 20px;
-  min-height: 57rem;
 }
 
 .blog-img {
-  width: 100%;
+  position: relative;
+  width: 30%;
   height: auto;
+}
+
+.blog-img .input-img {
+  position: absolute;
+  width: 30%;
+  left: 50%;
+  top: 80%;
+  transform: translateX(-50%);
 }
 
 .blog-img img {
@@ -83,6 +97,8 @@ body {
 }
 
 .blog-text {
+  position: relative;
+  width: 70%;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -122,27 +138,40 @@ body {
   color: #f33c3c;
   transition: all ease 1s;
 }
-.hide-text{
-  display: none;
+
+.blog-text .edit {
+  position: absolute;
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+  top: 90%;
+  right: 5%;
 }
 
-.dots {
-  font-size: 0.9rem;
+.blog-heading .home-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
 }
 
-@media (max-width: 1250px) {
-  .blog-box {
-    width: 300px;
-  }
+.blog-text input {
+  margin-bottom: 1rem;
 }
 
-@media (max-width: 1100px) {
-  .blog-box {
-    width: 70%;
-  }
+.blog-text .input-date-category {
+  width: 15%;
 }
-@media (max-width: 700px) {
-  .blog-box {
-    width: 100%;
-  }
+
+.blog-text .input-title {
+  padding: 10px;
 }
+
+.blog-text .input-content {
+  height: 70%;
+  padding: 10px;
+}
+
+.edit button {
+  width: 100px;
+  height: auto;
+}
+

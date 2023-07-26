@@ -1,8 +1,8 @@
 package com.example.blog.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Category {
@@ -12,7 +12,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private List<Blog> blogList = new ArrayList<>();
+    private Set<Blog> blogList;
 
     public Category() {
     }
@@ -24,6 +24,12 @@ public class Category {
 
     public Category(String name) {
         this.name = name;
+    }
+
+    public Category(int id, String name, Set<Blog> blogList) {
+        this.id = id;
+        this.name = name;
+        this.blogList = blogList;
     }
 
     public int getId() {
@@ -42,11 +48,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Blog> getBlogList() {
+    public Set<Blog> getBlogList() {
         return blogList;
     }
 
-    public void setBlogList(List<Blog> blogList) {
+    public void setBlogList(Set<Blog> blogList) {
         this.blogList = blogList;
     }
 }

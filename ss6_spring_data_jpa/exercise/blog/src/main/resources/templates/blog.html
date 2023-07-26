@@ -17,13 +17,14 @@
     />
   </head>
   <body>
+  <div class="msg" th:text="${msg}" style="display: none" id="msg"></div>
     <!-- Blog Section -->
     <section id="blog">
       <!-- Heading -->
       <div class="blog-heading">
         <h3>Dragon Ball Z: Stories</h3>
         <h4>By <span th:text="${author.name}"></span></h4>
-        <a href="#">Tell something...</a>
+        <a th:href="@{/show-create-form}">Tell something...</a>
       </div>
 
       <!-- Container -->
@@ -42,7 +43,7 @@
           <div class="blog-text">
             <span th:text="${blog.date}"></span>
             <a th:text="${blog.title}" href="#" class="blog-title">Title</a>
-            <p th:text="${blog.content}">
+            <p th:text="${blog.content}" class="content">
             </p>
             <a th:href="@{/detail/{id}(id=${blog.id})}">Read More</a>
           </div>
@@ -50,4 +51,6 @@
       </div>
     </section>
   </body>
+  <script src="/css/blog.js">
+  </script>
 </html>

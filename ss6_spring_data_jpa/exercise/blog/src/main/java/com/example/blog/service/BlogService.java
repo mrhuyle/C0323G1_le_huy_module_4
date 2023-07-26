@@ -21,4 +21,8 @@ public class BlogService implements IBlogService {
         return blogRepository.findById(id).get();
     }
 
+    @Override
+    public void create(Blog blog) {
+        blogRepository.save(blog);
+    }
 }
