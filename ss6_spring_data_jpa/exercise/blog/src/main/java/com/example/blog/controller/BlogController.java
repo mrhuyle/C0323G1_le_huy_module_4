@@ -19,6 +19,6 @@ public class BlogController {
     public String showHomePage(Model model) {
         model.addAttribute("blogList", blogService.findAll());
         model.addAttribute("author",authorService.findById(1));
-        return "index";
+        return "blog";
     }
 }
