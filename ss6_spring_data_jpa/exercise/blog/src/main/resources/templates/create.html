@@ -40,8 +40,8 @@
         <div class="blog-box">
             <!-- Image -->
             <div class="blog-img">
-                <input class="input-img" type="text" placeholder="Input img link" id="input-img">
-                <img th:if="${edit}" th:src="${blog.img}" alt="img1" />
+                <input class="input-img" type="text" placeholder="Input img link" id="input-img" th:value="${blog.img}">
+                <img th:if="${edit}" th:src="${blog.img}" alt="img1"/>
                 <img th:if="${!edit}" src="https://us.123rf.com/450wm/urfandadashov/urfandadashov1806/urfandadashov180601827/150417827-photo-not-available-vector-icon-isolated-on-transparent-background-photo-not-available-logo-concept.jpg"
                      alt="img1"
                 />
@@ -50,10 +50,11 @@
             <!-- Text -->
             <div class="blog-text">
                 <div class="date-category">
+                    <input type="hidden" id="input-id" th:value="${blog.id}">
                     <input class="input-date-category" type="date" id="input-date" th:value="${blog.date}">
                     <select th:if="${edit}" name="category" id="input-category" class="input-date-category" required>
                         <option value="">Choose category</option>
-                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == blog.category.id}"></option>
+                        <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}" th:selected="${category.id == blog.category.getId()}"></option>
                     </select>
                     <select th:if="${!edit}" name="category" id="input-category" class="input-date-category" required>
                         <option value="">Choose category</option>
@@ -64,7 +65,8 @@
                 <input class="input-title" type="text" placeholder="Input title" id="input-title" th:value="${blog.title}">
                 <textarea class="input-content" id="input-content" th:text="${blog.content}"></textarea>
                 <div class="edit">
-                    <button type="submit" onclick="submitForm()">Submit</button>
+                    <button th:if="${!edit}" type="button" onclick="submitForm()">Submit</button>
+                    <button th:if="${edit}" type="button" onclick="edit()">Edit</button>
                 </div>
             </div>
         </div>
@@ -76,6 +78,14 @@
     <input type="hidden" th:field="*{category}" id="category">
     <input type="hidden" th:field="*{title}" id="title">
     <input type="hidden" th:field="*{content}" id="content">
+</form>
+
+<form method="post" th:object="${blog}" id="editForm">
+    <input type="hidden" th:field="*{id}" id="editId">
+    <input type="hidden" th:field="*{img}" id="editImg">
+    <input type="hidden" th:field="*{date}" id="editDate">
+    <input type="hidden" th:field="*{title}" id="editTitle">
+    <input type="hidden" th:field="*{content}" id="editContent">
 </form>
 </body>
 <script>
@@ -91,6 +101,23 @@
         let inputContent = document.getElementById("input-content").value;
         document.getElementById("content").value = inputContent;
         document.getElementById("createForm").submit();
+    }
+
+    function edit() {
+        let inputId = document.getElementById("input-id").value;
+        document.getElementById("editId").value = inputId;
+        let inputImg = document.getElementById("input-img").value;
+        document.getElementById("editImg").value = inputImg;
+        let inputDate = document.getElementById("input-date").value;
+        document.getElementById("editDate").value = inputDate;
+        let inputCategory = document.getElementById("input-category").value;
+        document.getElementById("editForm").action = "/edit/" + inputCategory;
+        let inputTitle = document.getElementById("input-title").value;
+        document.getElementById("editTitle").value = inputTitle;
+        let inputContent = document.getElementById("input-content").value;
+        document.getElementById("editContent").value = inputContent;
+        console.log(inputTitle)
+        document.getElementById("editForm").submit();
     }
 
     function backToHome() {

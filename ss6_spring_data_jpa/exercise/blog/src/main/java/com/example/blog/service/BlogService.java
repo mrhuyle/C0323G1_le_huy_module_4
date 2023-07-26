@@ -1,7 +1,9 @@
 package com.example.blog.service;
 
 import com.example.blog.model.Blog;
+import com.example.blog.model.Category;
 import com.example.blog.repository.IBlogRepository;
+import com.example.blog.repository.ICategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +13,8 @@ import java.util.List;
 public class BlogService implements IBlogService {
     @Autowired
     private IBlogRepository blogRepository;
+    @Autowired
+    private ICategoryRepository categoryRepository;
     @Override
     public List<Blog> findAll() {
         return blogRepository.findAll();
@@ -32,7 +36,13 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public void editById(int id) {
-        Blog currentBlog = blogRepository.findById(id).get();
+    public void edit(Blog blog) {
+        Blog currentBlog = blogRepository.findById(blog.getId()).get();
+        currentBlog.setCategory(blog.getCategory());
+        currentBlog.setContent(blog.getContent());
+        currentBlog.setDate(blog.getDate());
+        currentBlog.setImg(blog.getImg());
+        currentBlog.setTitle(blog.getTitle());
+        blogRepository.save(currentBlog);
     }
 }

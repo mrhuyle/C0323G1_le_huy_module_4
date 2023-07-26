@@ -8,10 +8,7 @@ import com.example.blog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.print.DocFlavor;
@@ -75,5 +72,17 @@ public class BlogController {
         model.addAttribute("blog",blog);
         model.addAttribute("edit", true);
         return "create";
+    }
+
+    @PostMapping("/edit/{categoryId}")
+    public String edit(@ModelAttribute Blog blog, @PathVariable("categoryId") int categoryId ,RedirectAttributes redirectAttributes) {
+        System.out.println(blog.getTitle());
+        System.out.println(categoryId);
+        Category category = categoryService.findById(categoryId);
+        blog.setCategory(category);
+        blogService.edit(blog);
+        System.out.println(blog.getCategory().getId());
+        redirectAttributes.addFlashAttribute("msg", "Edited Successfully");
+        return "redirect:/";
     }
 }

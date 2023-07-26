@@ -52,6 +52,15 @@ public class Blog {
         this.author = author;
     }
 
+    public Blog(int id, String title, Date date, String content, String img, Author author) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+        this.content = content;
+        this.img = img;
+        this.author = author;
+    }
+
     public int getId() {
         return id;
     }
