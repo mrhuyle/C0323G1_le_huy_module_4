@@ -56,7 +56,6 @@ public class BlogController {
     public String create(@ModelAttribute Blog blog, RedirectAttributes redirectAttributes) {
         blogService.create(blog);
         redirectAttributes.addFlashAttribute("msg", "Created Successfully");
-        System.out.println("abc");
         return "redirect:/";
     }
 }

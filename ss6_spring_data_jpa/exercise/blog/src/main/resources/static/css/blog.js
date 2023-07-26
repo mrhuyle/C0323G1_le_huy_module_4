@@ -11,7 +11,8 @@ contents.forEach(content => {
     }
 })
 
-let msg = document.getElementById("msg").value;
-if (msg != null) {
-    window.alert(msg)
+let msgElement = document.getElementById("msg");
+let msg = msgElement.innerText;
+if (msg) {
+    window.alert(msg);
 }

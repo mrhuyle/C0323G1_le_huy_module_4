@@ -17,8 +17,8 @@
     />
   </head>
   <body>
-  <div class="msg" th:text="${msg}" style="display: none" id="msg"></div>
-    <!-- Blog Section -->
+  <div class="msg" th:if="${msg}" th:text="${msg}" style="display: none" id="msg"></div>
+  <!-- Blog Section -->
     <section id="blog">
       <!-- Heading -->
       <div class="blog-heading">
