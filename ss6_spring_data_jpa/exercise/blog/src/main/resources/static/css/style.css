@@ -32,7 +32,7 @@ body {
 
 #blog a {
   color: #f33c3c;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-weight: 400;
 }
 
@@ -58,7 +58,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  margin: 0;
   flex-wrap: wrap;
 }
 
@@ -66,7 +66,7 @@ body {
   width: 350px;
   background-color: #ffffff;
   border: 1px solid #ececec;
-  margin: 20px;
+  margin: 10px;
   height: auto;
 }
 
@@ -159,6 +159,17 @@ input .search-input {
   width: 200px;
 }
 
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .pagination-element {
+  margin: 0 1rem;
+  padding: 0 2px;
+  border-left: #9b9b9b solid 1px;
+  border-right: #9b9b9b solid 1px;
+}
 
 @media (max-width: 1250px) {
   .blog-box {

@@ -72,6 +72,7 @@
         </div>
     </div>
 </section>
+
 <form th:action="@{/create}" method="post" th:object="${blog}" id="createForm">
     <input type="hidden" th:field="*{img}" id="img">
     <input type="hidden" th:field="*{date}" id="date">

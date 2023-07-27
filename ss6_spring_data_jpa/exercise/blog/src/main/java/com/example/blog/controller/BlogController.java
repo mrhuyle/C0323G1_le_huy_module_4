@@ -6,12 +6,14 @@ import com.example.blog.service.IAuthorService;
 import com.example.blog.service.IBlogService;
 import com.example.blog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.print.DocFlavor;
 import java.util.List;
 
 @Controller
@@ -26,15 +28,21 @@ public class BlogController {
     private ICategoryService categoryService;
 
     @GetMapping("/")
-    public String showHomePage(@RequestParam(required = false) String search, Model model) {
-        System.out.println(search);
+    public String showHomePage(@RequestParam(required = false) String search, @RequestParam(name="page", defaultValue = "0") int page, Model model) {
+        int pageSize = 3;
+        PageRequest pageRequest = PageRequest.of(page,pageSize, Sort.by("date").ascending());
         if (search != null && !search.trim().isEmpty()) {
-            List<Blog> searchResults = blogService.searchByTitle(search);
-            model.addAttribute("blogList", searchResults);
+            Page<Blog> blogPage = blogService.searchByTitlePaged(search, pageRequest);
+            model.addAttribute("blogList", blogPage.getContent());
             model.addAttribute("author", authorService.findById(1));
+            model.addAttribute("currentPage",page);
+            model.addAttribute("totalPages",blogPage.getTotalPages());
         } else {
-            model.addAttribute("blogList", blogService.findAll());
+            Page<Blog> blogPage = blogService.findAllPaged(pageRequest);
+            model.addAttribute("blogList", blogPage.getContent());
             model.addAttribute("author", authorService.findById(1));
+            model.addAttribute("currentPage",page);
+            model.addAttribute("totalPages",blogPage.getTotalPages());
         }
         return "blog";
     }

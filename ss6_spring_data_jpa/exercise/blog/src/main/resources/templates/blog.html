@@ -56,6 +56,20 @@
             </div>
         </div>
     </div>
+    <div class="pagination">
+        <div class="pagination-element" th:if="${currentPage > 0}">
+            <a th:href="@{/(page=0)}">First</a>
+        </div>
+        <div class="pagination-element" th:if="${currentPage > 0}">
+            <a th:href="@{/(page=${currentPage - 1})}">Previous</a>
+        </div>
+        <div class="pagination-element" th:if="${currentPage < totalPages - 1}">
+            <a th:href="@{/(page=${currentPage + 1})}">Next</a>
+        </div>
+        <div class="pagination-element" th:if="${currentPage < totalPages - 1}">
+            <a th:href="@{/(page=${totalPages - 1})}">Last</a>
+        </div>
+    </div>
 </section>
 </body>
 <script src="/css/blog.js">
