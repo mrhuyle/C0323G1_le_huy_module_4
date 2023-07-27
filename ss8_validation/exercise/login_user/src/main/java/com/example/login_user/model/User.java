@@ -18,23 +18,11 @@ public class User {
     private String username;
     private String password;
     private String phoneNumber;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private String email;
-    private Gender gender;
-    private Role role;
 
-    public enum Gender {
-        MALE, FEMALE, NON_BINARY
-    }
-
-    public enum Role {
-        USER, ADMIN
-    }
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String username, String password, String phoneNumber, LocalDate dateOfBirth, String email, Gender gender, Role role) {
+    public User(int id, String firstName, String lastName, String username, String password, String phoneNumber, String dateOfBirth, String email) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
@@ -42,8 +30,9 @@ public class User {
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
-        this.gender = gender;
-        this.role = role;
+    }
+
+    public User() {
     }
 
     public int getId() {
@@ -94,11 +83,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -108,22 +97,6 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }
 

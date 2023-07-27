@@ -73,75 +73,54 @@
     </style>
 </head>
 <body>
-<form th:action="@{/register}" method="post">
+<form th:action="@{/register}" th:object="${userDto}" method="post">
     <div class="container">
         <h1>Register</h1>
         <p>Please fill in this form to create an account.</p>
         <hr>
         <!-- First Name -->
         <label for="firstName"><b>First Name</b></label>
-        <input type="text" placeholder="Enter First Name" name="firstName" id="firstName" required>
-        <span class="error-message" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+        <input type="text" placeholder="Enter First Name" th:field="*{firstName}" id="firstName" required>
+        <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error-message"></span>
 
         <!-- Last Name -->
         <label for="lastName"><b>Last Name</b></label>
-        <input type="text" placeholder="Enter Last Name" name="lastName" id="lastName" required>
-        <span class="error-message" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+        <input type="text" placeholder="Enter Last Name" th:field="*{lastName}" id="lastName" required>
+        <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error-message"></span>
 
         <!-- Username -->
         <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" id="username" required>
-        <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+        <input type="text" placeholder="Enter Username" th:field="*{username}" id="username" required>
+        <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-message"></span>
 
         <!-- Password -->
         <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="password" required>
-        <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+        <input type="password" placeholder="Enter Password" th:field="*{password}" id="password" required>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-message"></span>
 
         <!-- Phone Number -->
         <label for="phoneNumber"><b>Phone Number</b></label>
-        <input type="text" placeholder="Enter Phone Number" name="phoneNumber" id="phoneNumber" required>
-        <span class="error-message" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+        <input type="text" placeholder="Enter Phone Number" th:field="*{phoneNumber}" id="phoneNumber" required>
+        <span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error-message"></span>
 
         <!-- Date of Birth -->
         <label for="dateOfBirth"><b>Date of Birth</b></label>
-        <input type="date" name="dateOfBirth" id="dateOfBirth" required>
-        <span class="error-message" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></span>
+        <input type="date" th:field="*{dateOfBirth}" id="dateOfBirth" required>
+        <span th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="error-message"></span>
 
         <!-- Email -->
         <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" id="email" required>
-        <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+        <input type="text" placeholder="Enter Email" th:field="*{email}" id="email" required>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error-message"></span>
 
-        <!-- Gender -->
-        <label for="gender"><b>Gender</b></label>
-        <select name="gender" id="gender" required>
-            <option value="" disabled selected>Select Gender</option>
-            <option value="MALE">Male</option>
-            <option value="FEMALE">Female</option>
-            <option value="NON_BINARY">Non-Binary</option>
-        </select>
-        <span class="error-message" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></span>
-
-        <!-- Role -->
-        <label for="role"><b>Role</b></label>
-        <select name="role" id="role" required>
-            <option value="" disabled selected>Select Role</option>
-            <option value="USER">User</option>
-            <option value="ADMIN">Admin</option>
-        </select>
-        <span class="error-message" th:if="${#fields.hasErrors('role')}" th:errors="*{role}"></span>
+        <!-- Add any other properties here with corresponding input fields -->
 
         <hr>
         <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>
 
         <button type="submit" class="registerbtn">Register</button>
     </div>
-
-    <div class="container signin">
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
-    </div>
 </form>
-
 </body>
+
 </html>
