@@ -5,7 +5,6 @@ import com.example.login_user.model.User;
 import com.example.login_user.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,6 @@ public class UserController {
     @GetMapping("/")
     public String showRegisterForm(Model model) {
         model.addAttribute("userDto", new UserDto());
-        model.addAttribute("msg", "msg");
         return "register";
     }
 
@@ -37,8 +35,12 @@ public class UserController {
         }
         BeanUtils.copyProperties(userDto, user);
         userService.create(user);
-        redirectAttributes.addFlashAttribute("msg", "created sucessfully");
-        return "redirect:/";
+        return "redirect:/registration-success";
     }
-
+    @GetMapping("registration-success")
+    public String registerSuccess(Model model) {
+        model.addAttribute("userDto", new UserDto());
+        model.addAttribute("msg", "Created successfully");
+        return "register";
+    }
 }

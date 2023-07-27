@@ -14,8 +14,13 @@
 
         /* Add padding to containers */
         .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             padding: 16px;
             background-color: white;
+            width: 60%;
         }
 
         /* Full-width input fields */
@@ -70,6 +75,12 @@
             color: red;
             font-size: 14px;
         }
+
+        .success-message {
+            position: absolute;
+            z-index: 2;
+        }
+
     </style>
 </head>
 <body>
@@ -121,6 +132,15 @@
         <button type="submit" class="registerbtn">Register</button>
     </div>
 </form>
-</body>
 
+<div th:if="${msg}" class="success-message">
+    <p th:text="${msg}" id="message">Message</p>
+</div>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let msg = document.getElementById("message").innerText;
+        alert(msg);
+    });
+</script>
 </html>
