@@ -1,2 +1,7 @@
-package com.example.song.service;public interface ISongService {
+package com.example.song.service;
+
+import com.example.song.model.Song;
+
+public interface ISongService {
+    void create(Song song);
 }

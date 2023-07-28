@@ -1,10 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Song</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: black;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Add padding to containers */
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 16px;
+      background-color: white;
+      width: 60%;
+    }
+
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 15px;
+      margin: 5px 0 22px 0;
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+
+    /* Overwrite default styles of hr */
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+
+    /* Set a style for the submit button */
+    .registerbtn {
+      background-color: #04AA6D;
+      color: white;
+      padding: 16px 20px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+      opacity: 1;
+    }
+
+    /* Add a blue text color to links */
+    a {
+      color: dodgerblue;
+    }
+
+    /* Set a grey background color and center the text of the "sign in" section */
+    .signin {
+      background-color: #f1f1f1;
+      text-align: center;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+    }
+
+    .success-message {
+      position: absolute;
+      z-index: 2;
+    }
+
+  </style>
 </head>
 <body>
-$END$
+<form th:action="@{/register}" th:object="${songDto}" method="post">
+  <div class="container">
+    <h1>Add Song</h1>
+    <p>Please fill in this form to add new song.</p>
+    <hr>
+    <!-- Song Name -->
+    <label for="name"><b>Song Name</b></label>
+    <input type="text" placeholder="Enter Song Name" th:field="*{name}" id="name" required>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error-message"></span>
+
+    <!-- Artist -->
+    <label for="artist"><b>Last Name</b></label>
+    <input type="text" placeholder="Enter Artist" th:field="*{artist}" id="artist" required>
+    <span th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}" class="error-message"></span>
+
+    <!-- Genre -->
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter Genre" th:field="*{genre}" id="username" required>
+    <span th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}" class="error-message"></span>
+
+
+    <button type="submit" class="registerbtn">Register</button>
+  </div>
+</form>
+
+<div th:if="${msg}" class="success-message">
+  <p th:text="${msg}" id="message">Message</p>
+</div>
 </body>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    let msg = document.getElementById("message").innerText;
+    alert(msg);
+  });
+</script>
 </html>
