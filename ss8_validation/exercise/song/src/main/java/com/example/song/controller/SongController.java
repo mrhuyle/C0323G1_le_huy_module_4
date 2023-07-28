@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
@@ -17,21 +18,30 @@ import javax.validation.Valid;
 public class SongController {
     @Autowired
     private ISongService songService;
+
     @GetMapping("/")
     public String showHomePage(Model model) {
-        model.addAttribute("songDto",new SongDto());
+        model.addAttribute("songDto", new SongDto());
         return "home";
     }
 
+    @PostMapping("/add")
     public String create(@Valid @ModelAttribute SongDto songDto, BindingResult bindingResult) {
         Song song = new Song();
-        new SongDto().validate(songDto,bindingResult);
+        new SongDto().validate(songDto, bindingResult);
         if (bindingResult.hasErrors()) {
             return "home";
         }
         BeanUtils.copyProperties(songDto, song);
         songService.create(song);
-        return "home/add-success";
+        return "redirect:/add-success";
+    }
+
+    @GetMapping("/add-success")
+    public String addSuccess(Model model) {
+        model.addAttribute("songDto", new SongDto());
+        model.addAttribute("msg", "Added Successfully");
+        return "home";
     }
 
 }
