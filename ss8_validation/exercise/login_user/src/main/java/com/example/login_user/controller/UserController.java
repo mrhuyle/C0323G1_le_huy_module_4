@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String register(@Valid @ModelAttribute UserDto userDto, BindingResult bindingResult) {
         User user = new User();
         new UserDto().validate(userDto, bindingResult);
         if (bindingResult.hasErrors()) {
