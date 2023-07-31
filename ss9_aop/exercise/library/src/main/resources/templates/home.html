@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Library</title>
+
+    <!-- Style css -------------------------->
+    <link rel="stylesheet" href="/css/style.css"/>
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet"
+    />
+</head>
+<body>
+<div class="msg" th:if="${msg}" th:text="${msg}" style="display: none" id="msg"></div>
+<!-- Blog Section -->
+<section id="blog">
+    <!-- Heading -->
+    <div class="blog-heading">
+        <h3>Books Library</h3>
+    </div>
+    <div class="blog-sub-heading">
+        <a href="#">Return Book</a>
+        <a th:href="@{/showCodesList}">Show Borrow List</a>
+    </div>
+    <!-- Container -->
+    <div class="blog-container">
+        <!-- Box1 -->
+        <div th:each="book : ${bookslist}" class="blog-box">
+            <!-- Image -->
+            <div class="blog-img">
+                <img
+                        th:src="${book.getDescription()}"
+                        alt="img1"
+                />
+            </div>
+
+            <!-- Text -->
+            <div class="blog-text">
+                <span th:text="${book.author}"></span>
+                <a th:text="${book.getTitle()}" href="#" class="blog-title">Title</a>
+                <span>Total of copies </span><span th:text="${book.getTotalCopies()}"></span>
+                <span>Available copies </span><span th:text="${book.getAvailableCopies()}"></span>
+                <button th:onclick="'borrow(\'' + ${book.id} + '\');'">Borrow</button>
+            </div>
+        </div>
+    </div>
+<!--    <div class="pagination">-->
+<!--        <div class="pagination-element" th:if="${currentPage > 0}">-->
+<!--            <a th:href="@{/(page=0)}">First</a>-->
+<!--        </div>-->
+<!--        <div class="pagination-element" th:if="${currentPage > 0}">-->
+<!--            <a th:href="@{/(page=${currentPage - 1})}">Previous</a>-->
+<!--        </div>-->
+<!--        <div class="pagination-element" th:if="${currentPage < totalPages - 1}">-->
+<!--            <a th:href="@{/(page=${currentPage + 1})}">Next</a>-->
+<!--        </div>-->
+<!--        <div class="pagination-element" th:if="${currentPage < totalPages - 1}">-->
+<!--            <a th:href="@{/(page=${totalPages - 1})}">Last</a>-->
+<!--        </div>-->
+<!--    </div>-->
+</section>
+<form action="/borrow" method="post" id="borrowForm">
+    <input type="hidden" name="borrowId" id="borrowId">
+</form>
+</body>
+<script src="/js/home.js">
+</script>
+</html>
