@@ -25,7 +25,14 @@ public class BooksService implements IBooksService {
     @Override
     public void setCopies(Books book) {
         Books currentBook = booksRepository.findById(book.getId()).get();
-        currentBook.setAvailableCopies(book.getAvailableCopies()-1);
+        currentBook.setAvailableCopies(book.getAvailableCopies() - 1);
         booksRepository.save(currentBook);
+    }
+
+    @Override
+    public void setBookReturn(Long id) {
+        Books bookReturn = booksRepository.findById(id).get();
+        bookReturn.setAvailableCopies(bookReturn.getAvailableCopies() + 1);
+        booksRepository.save(bookReturn);
     }
 }

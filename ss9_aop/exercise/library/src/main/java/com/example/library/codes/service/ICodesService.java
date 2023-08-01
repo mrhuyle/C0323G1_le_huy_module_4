@@ -8,4 +8,7 @@ import java.util.List;
 public interface ICodesService {
     void borrow(Books book);
     List<Codes> findAll();
+    Codes findByCode(String code);
+    Codes findById(Long id);
+    void returnBook(Long id);
 }

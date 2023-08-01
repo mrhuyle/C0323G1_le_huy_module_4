@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book</title>
+</head>
+<body>
+<a href="/">Back</a>
+<div class="input-code">
+    <input type="text" id="input-code"/>
+    <button type="button" th:onclick="showCode()">Show Code</button>
+</div>
+<table class="table">
+    <thead>
+    <tr th:if="${code.code}">
+        <th>Code</th>
+        <th>Book Title</th>
+        <th>Borrowed Date</th>
+        <th>Return Date</th>
+        <th>Return Status</th>
+        <th>Return</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${code.code}">
+        <td th:text="${code.code}"></td>
+        <td th:text="${code.bookBorrowed.title}"></td>
+        <td th:text="${code.borrowedDate}"></td>
+        <td th:text="${code.returnDate}"></td>
+        <td th:text="${code.flag} ? 'Yes' : 'No'"></td>
+        <td>
+            <button type="button" th:onclick="'returnBook(\''+ ${code.getId()} + '\');'">Return</button>
+        </td>
+    </tr>
+    <tr th:unless="${code.code}">
+        <td colspan="5">No record found for the given code.</td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="/showCode" id="showCodeForm" method="get">
+    <input type="hidden" name="code" id="code">
+</form>
+<form action="/returnBook" id="returnBookForm" method="get">
+    <input type="hidden" name="idReturn" id="idReturn">
+</form>
+<script>
+    function showCode() {
+        let code = document.getElementById("input-code").value;
+        document.getElementById("code").value = code;
+        document.getElementById("showCodeForm").submit();
+    }
+
+    function returnBook(id) {
+        document.getElementById("idReturn").value = id;
+        document.getElementById("returnBookForm").submit();
+    }
+</script>
+</body>
+</html>

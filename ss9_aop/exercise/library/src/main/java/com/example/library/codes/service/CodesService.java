@@ -27,4 +27,22 @@ public class CodesService implements ICodesService {
     public List<Codes> findAll() {
         return codesRepository.findAll();
     }
+
+    @Override
+    public Codes findByCode(String code) {
+        return codesRepository.findByCode(code);
+    }
+
+    @Override
+    public Codes findById(Long id) {
+        return codesRepository.findById(id).get();
+    }
+
+    @Override
+    public void returnBook(Long id) {
+        Codes codeReturn = codesRepository.findById(id).get();
+        codeReturn.setFlag(true);
+        codeReturn.setReturnDate(LocalDate.now());
+        codesRepository.save(codeReturn);
+    }
 }

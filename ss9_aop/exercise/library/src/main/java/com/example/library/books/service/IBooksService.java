@@ -10,4 +10,5 @@ public interface IBooksService {
     Books findById(Long id);
 
     void setCopies(Books book);
+    void setBookReturn(Long id);
 }
