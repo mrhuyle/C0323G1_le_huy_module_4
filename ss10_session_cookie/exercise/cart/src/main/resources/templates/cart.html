@@ -23,7 +23,7 @@
       <td>
         <a id="decrease_button" th:text="${'-'}"></a>
         <span th:text="${product.getValue()}"></span>
-        <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
+        <a id="increase_button" th:href="@{/plusProduct/{id}(id=${product.getKey().getId()})}"
            th:text="${'+'}"></a>
       </td>
       <td th:text="${product.getKey().price}"></td>
@@ -35,5 +35,17 @@
     </tr>
   </table>
 </form>
+
+<div class="footer">
+  <div class="back-button">
+    <button onclick="backToHome()">Back</button>
+  </div>
+</div>
+
+<script>
+  function backToHome() {
+    window.location.href= "/";
+  }
+</script>
 </body>
 </html>

@@ -36,13 +36,14 @@ public class ProductController {
 
     @GetMapping("/add/{id}")
     public String addToCart(@PathVariable Long id,
-                            @ModelAttribute Cart cart) {
+                            @ModelAttribute Cart cart, Model model) {
         Optional<Product> productOptional = productService.findById(id);
         if (!productOptional.isPresent()) {
             return "/error_404";
         }
         cart.addProduct(productOptional.get());
-        return "redirect:/shop";
+        model.addAttribute("productsList", productService.findAll());
+        return "home";
     }
 
     @GetMapping("/detail/{id}")
