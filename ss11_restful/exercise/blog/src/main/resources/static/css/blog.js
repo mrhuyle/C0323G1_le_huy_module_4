@@ -32,3 +32,40 @@ function search() {
 }
 
 
+$(document).ready(function () {
+    // Function to fetch blogs and render them in the container
+    function fetchBlogsAndRender() {
+        $.ajax({
+            url: '/api/blogs', // Replace with the correct endpoint URL
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                // Clear the container before rendering new data
+                $('#blogListContainer').empty();
+
+                // Iterate over the blogs and create HTML elements to display them
+                data.forEach(function (blog) {
+                    var blogHTML = `
+                            <div>
+                                <h2>${blog.title}</h2>
+                                <p>${blog.content}</p>
+                                <!-- Add other properties as needed -->
+                            </div>
+                        `;
+                    $('#blogListContainer').append(blogHTML);
+                });
+            },
+            error: function (error) {
+                console.log('Error fetching blogs:', error);
+            }
+        });
+    }
+
+    // Call the function initially to render the blogs on page load
+    fetchBlogsAndRender();
+
+    // You can call the function whenever you need to refresh the blog list
+    // For example, after adding, updating, or deleting a blog
+    // fetchBlogsAndRender();
+});
+
