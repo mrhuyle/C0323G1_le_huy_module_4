@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 1rem;
+            padding: 0;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .header {
+            text-align: center;
+            color: red;
+            font-size: 30px;
+             margin-bottom: 2rem;
+        }
+        .body {
+            width: 30%;
+            height: auto;
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .item {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    PRODUCTS LIST
+</div>
+<div class="body">
+    <div class="item">
+        <div class="item-img">
+            <img th:src="${product.getDescription()}" alt="product-img">
+        </div>
+        <div class="item-name">
+            <a href="#" th:text="${product.getName()}"></a>
+        </div>
+        <div class="item-price">
+            <span th:text="${product.getPrice()}"></span><span>$</span>
+        </div>
+        <div class="add-button">
+            <button type="button" th:onclick="'addToCart(\'' + ${product.getId()} + '\')'">Add to Cart</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <div class="back-button">
+        <button onclick="backToHome()">Back</button>
+    </div>
+</div>
+
+
+<script>
+    function backToHome() {
+        window.location.href= "/";
+    }
+    function addToCart(id) {
+        window.location.href= "/add/" + id;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            margin: 1rem;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            text-align: center;
+            color: red;
+            font-size: 30px;
+             margin-bottom: 2rem;
+        }
+        .body {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .item {
+            padding: 20px;
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    PRODUCTS LIST
+</div>
+<div class="cart">
+    <a href="/shopping-cart">To Cart</a>
+</div>
+<div class="body">
+    <div th:each="product: ${productsList}" class="item">
+        <div class="item-img">
+            <img th:src="${product.getDescription()}" alt="product-img">
+        </div>
+        <div class="item-name">
+            <a th:href="@{/detail/{id}(id = ${product.getId()})}" th:text="${product.getName()}"></a>
+        </div>
+        <div class="item-price">
+            <span th:text="${product.getPrice()}"></span><span>$</span>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="back-button">
+        <button onclick="backToHome()">Back</button>
+    </div>
+</div>
+
+<script>
+    function backToHome() {
+        window.location.href= "/";
+    }
+</script>
+</body>
+</html>
