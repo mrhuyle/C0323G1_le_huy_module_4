@@ -1,0 +1,149 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: poppins;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: poppins;
+  background-color: #9b9b9b;
+}
+
+/* Blog CSS */
+
+#blog {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+#blog a {
+  color: #f33c3c;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+#blog a:hover {
+  color: #1111b0;
+  transition: all ease 1s;
+}
+
+.blog-heading {
+  width: 90vw;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.blog-heading h3 {
+  font-size: 2.4rem;
+  color: #2b2b2b;
+  font-weight: 600;
+}
+
+.blog-container {
+  width: 90vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.blog-box {
+  display: flex;
+  width: 100%;
+  background-color: #ffffff;
+  border: 1px solid #ececec;
+  margin: 20px;
+}
+
+.blog-img {
+  width: 30%;
+  height: auto;
+}
+
+.blog-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.blog-text {
+  position: relative;
+  width: 70%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-text span {
+  color: #f33c3c;
+  font-size: 0.9rem;
+}
+
+.blog-text .blog-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: #272727;
+}
+
+.blog-text .blog-title:hover {
+  color: #f33c3c;
+  transition: all ease 1s;
+}
+
+.blog-text .blog-title p {
+  color: #9b9b9b;
+  font-size: 0.9rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 20px 0;
+}
+.blog-text a {
+  color: #1111b0;
+}
+
+.blog-text a:hover {
+  color: #f33c3c;
+  transition: all ease 1s;
+}
+
+.blog-text .edit {
+  position: absolute;
+  display: flex;
+  width: 5rem;
+  justify-content: space-between;
+  top: 90%;
+  right: 5%;
+}
+
+.blog-heading .home-icon:hover {
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.blog-text-heading {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0,0,0, 0.1);
+}
